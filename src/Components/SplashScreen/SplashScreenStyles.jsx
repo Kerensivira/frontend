@@ -30,7 +30,7 @@ export const LogoInicio = styled.img`
 
 //`
 
-//Maquetacion de mi Login.
+                        //Maquetacion de mi Login.
 
 export const DivLogin = styled.div`
   background-color: black;
@@ -59,6 +59,7 @@ export const H1 = styled.h1`
   margin-bottom: 4%;
 `;
 
+//Boton de Google
 export const BotonGoogle = styled.div`
 position: relative;
 left: 10%;

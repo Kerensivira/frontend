@@ -21,7 +21,9 @@ import {
   Button,
 } from "./SplashScreenStyles";
 
-//Maquetacion de mi pantalla splash
+
+
+                           //Maquetacion de mi pantalla splash
 
 const SplashScreen = () => {
   return (
