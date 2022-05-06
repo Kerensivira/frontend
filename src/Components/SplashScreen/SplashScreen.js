@@ -1,18 +1,14 @@
-import React from "react";
-import { Link } from "react-router-dom";
-
-
+import React, { useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
+import './ScreenIndex.css';
 
 //estilos
 import {
   BotonGoogle,
-  Div,
   DivLogin,
   H1,
   H6,
-  IMG,
   LogoDailyBits,
-  LogoInicio,
   Label,
   Input,
   BotonLogin,
@@ -26,28 +22,42 @@ import {
                            //Maquetacion de mi pantalla splash
 
 const SplashScreen = () => {
+
+  const [userName, setUserName] = useState("");
+  const [password, setPassword] = useState("");
+  const navigate = useNavigate()
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    iniciarSesion();
+   // console.log(userName, password);
+  };
+
+  const URL = "https://dailybits2022.herokuapp.com/usuario/";
+  const iniciarSesion = async () => {
+    let resp = await fetch(URL);
+    let data = await resp.json();
+
+    let searchUser = data.find(user => user.usuario === userName)
+
+    if (searchUser.usuario === userName && searchUser.password === password ) {
+       navigate('/Home')
+    } else{
+      alert('usuario o contrasena incorrecta.')
+    }
+  };
+
   return (
     <>
-      <Div className="splashScreen">
-        {/* <Link to = '/Html.js'>html</Link> */}
-
-        <LogoInicio
-          src="https://res.cloudinary.com/alexa01020304/image/upload/v1648689558/logoDailyBits-PhotoRoom_cpibwj.png"
-          alt="logo"
-        />
-
-        <div id="enlaces">
-          {/* <Link to = '/login'>
-      <Flecha
-      src="https://res.cloudinary.com/alexa01020304/image/upload/v1648740154/flecha-PhotoRoom_a0x4cn.png"
-      alt = 'logo'/>
-      </Link>
-
-      <Link to = '/Home'>
-      ir a Home 
-      </Link>*/}
+      <div className='container'>
+          <div className='splash1'></div>
+        <div className='splash'>
+          <img src='https://res.cloudinary.com/dovavvnjx/image/upload/q_100/v1651860403/Dise%C3%B1o_sin_t%C3%ADtulo_6_xbraun.png' alt='Logo'/>
         </div>
-      </Div>
+      </div>
+
+
+{/* Maquetacion Login */}
 
       <DivLogin className="maqueta_Login">
         <LogoDailyBits
@@ -76,8 +86,8 @@ const SplashScreen = () => {
           id="Name"
           name="Name"
           placeholder="Ingrese su correo electrónico"
-          // onChange={(e) => setUserName(e.target.value)}
-          // value={userName}
+          onChange={(e) => setUserName(e.target.value)}
+           value={userName}
         />
 
         <Input
@@ -85,13 +95,13 @@ const SplashScreen = () => {
           id="password"
           name="password"
           placeholder="Ingrese su contraseña"
-          // onChange={(e) => setPassword(e.target.value)}
-          //value={password}
+           onChange={(e) => setPassword(e.target.value)}
+          value={password}
         />
 
         <br></br>
 
-        <BotonLogin className="boton">iniciar Sesión</BotonLogin>
+        <BotonLogin className="boton">Iniciar Sesión</BotonLogin>
 
         <br></br>
 

@@ -1,43 +1,13 @@
 import styled from "styled-components";
 
-// Estilos generales
-
-export const Div = styled.div`
-  background-color: #6b47dc;
-  width: 350px;
-  height: 94vh;
-  display: none;
-  justify-content: center;
-  align-items: center;
-  padding-right: 1rem;
-  border-radius: 20px;
-`;
-
-//Configuracion de imagen
-export const LogoInicio = styled.img`
-  width: 200px;
-  height: 200px;
-`;
-
-//Flecha que desaparecerá si logro hacer la cosa bien, sino, que siga la fiesta.
-
-// export const Flecha = styled.img`
-
-//    width: 10%;
-//    position: relative;
-//    left: 85%;
-//    margin-top: 16%;
-
-//`
 
                         //Maquetacion de mi Login.
 
 export const DivLogin = styled.div`
-  background-color: black;
-  border: solid 2px #fff;
+  background-color: rgb(14, 24, 36);
   border-radius: 20px;
-  width: 350px;
-  height: 94vh;
+  min-width: 350px;
+    min-height: 92vh;
 `;
 
 export const LogoDailyBits = styled.img`
@@ -46,8 +16,7 @@ export const LogoDailyBits = styled.img`
   margin-left: 40%;
   margin-right: 38%;
   border-radius: 20%;
-  position: relative;
-  right: 2%;
+  
 `;
 
 export const H1 = styled.h1`
@@ -137,9 +106,10 @@ export const P = styled.div`
   color: #27b627;
   text-decoration: none;
   position: relative;
-  left: 18%;
-  margin-top: 3%;
+  left: 13%;
+  margin-top: 5%;
   transition-duration: 0.3s;
+  font-family: Arial, Helvetica, sans-serif;
 
   :hover {
     color: blueviolet;

@@ -7,15 +7,15 @@ export const arrayPreguntasHTML = [
         titulo: '¿Qué formato tienen las páginas HTML?',
         id:1,
         opciones: [
-            {respuesta: 'Son ficheros de texto. Podemos leer su contenido con cualquier procesador de texto',
+            {A_respuesta: 'Son ficheros de texto. Podemos leer su contenido con cualquier procesador de texto',
             Correcto: true,
             puntaje: 10},
     
-            {respuesta: 'Son ficheros binarios compilados. No se pueden leer, solo ejecutar en un navegador',
+            {B_respuesta: 'Son ficheros binarios compilados. No se pueden leer, solo ejecutar en un navegador',
             Correcto: false,
             puntaje: 0},
     
-            {respuesta: 'Son ficheros de texto especiales. Solo pueden leerlos los navegadores, un editor de texto normal no podría abrirlo',
+            {C_respuesta: 'Son ficheros de texto especiales. Solo pueden leerlos los navegadores, un editor de texto normal no podría abrirlo',
             Correcto: false,
             puntaje: 10},
     
