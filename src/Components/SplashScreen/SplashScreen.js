@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { Form } from "react-bootstrap";
 import { Link, useNavigate } from "react-router-dom";
 import './ScreenIndex.css';
 
@@ -40,11 +41,13 @@ const SplashScreen = () => {
 
     let searchUser = data.find(user => user.usuario === userName)
 
-    if (searchUser.usuario === userName && searchUser.password === password ) {
-       navigate('/Home')
-    } else{
-      alert('usuario o contrasena incorrecta.')
+    if (userName === '' && password === '') {
+      alert('Todos los campos son requeridos')
+    } else {
+      alert("Bienvenido");
+      window.location.href='/Home';
     }
+    
   };
 
   return (
@@ -81,6 +84,8 @@ const SplashScreen = () => {
 
         <Label>Correo electrónico</Label>
         <br></br>
+
+        <Form onSubmit={handleSubmit}>
         <Input
           type="text"
           id="Name"
@@ -108,6 +113,7 @@ const SplashScreen = () => {
         <Link to="/Registro">
           <P>¿Aún no tienes cuenta? Suscribirse</P>
         </Link>
+      </Form>
       </DivLogin>
     </>
   );
