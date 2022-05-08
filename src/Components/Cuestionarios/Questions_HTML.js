@@ -1,11 +1,12 @@
 import React, { useState } from "react";
 import { arrayPreguntasHTML } from "../../Data/dataQuestions";
+import './CuestionarioIndex.css'
 import {
  
     Button,
-  DivBoton,
   DivHijo,
   DivRespuestas,
+  InputRadio,
   QuestionTitle,
   SuperDiv,
 } from "./CuestionarioStyles";
@@ -46,6 +47,59 @@ let respuestaCorrecta = 0;
 
   //}
 
+
+    const optionA = () => {
+        const a = document.querySelector('.a');
+
+        const b = document.querySelector('.b').disabled = true;
+        const c = document.querySelector('.c').disabled = true;
+
+        const optionB = document.querySelector('.optionB');
+        const optionC = document.querySelector('.optionC')
+
+        a.classList.add('active', true);
+        optionB.classList.add('disabled');
+        optionC.classList.add('disabled');
+    }
+
+    const optionB = () => {
+        const b = document.querySelector('.b');
+
+        const a = document.querySelector('.a').disabled = true;
+        const c = document.querySelector('.c').disabled = true;
+
+        const optionA = document.querySelector('.optionA');
+        const optionC = document.querySelector('.optionC')
+
+        b.classList.add('active', true);
+        optionA.classList.add('disabled');
+        optionC.classList.add('disabled');
+    }
+
+    const optionC = () => {
+        const c = document.querySelector('.b');
+
+        const a = document.querySelector('.a').disabled = true;
+        const b = document.querySelector('.b').disabled = true;
+
+        const optionA = document.querySelector('.optionA');
+        const optionB = document.querySelector('.optionB')
+
+        c.classList.add('active', true);
+        optionA.classList.add('disabled');
+        optionB.classList.add('disabled');
+    }
+
+  const next = () => {
+    const a = document.querySelector('.a');
+    
+    if (a.classList.value === 'a active true') {
+        console.log(true)
+    } else {
+        console.log(false)
+    }
+  }
+
   return (
     <SuperDiv>
 
@@ -56,32 +110,37 @@ let respuestaCorrecta = 0;
       <DivRespuestas className="respuestas">
           <form>
             <div className="divPadre">
-              <DivHijo>
+              <DivHijo className="optionA">
                 <label>{arrayPreguntasHTML[respuesta].opcion1}</label>
-                <input type="radio" name="respuesta" value='answers1' />
+
+                <input type="radio" name="respuesta" className="a" id="radio0" value='answers1' onClick={optionA}/>
+						<label for="radio0"></label>
               </DivHijo>
 
-              <DivHijo>
+              <DivHijo className="optionB">
                 <label>{arrayPreguntasHTML[respuesta].opcion2}</label>
-                <input type="radio" name="respuesta" value='answers2' />
+
+                <input type="radio" name="respuesta" className="b" id="radio1" value='answers2' onClick={optionB}/>
+						<label for="radio1"></label>
               </DivHijo>
 
-              <DivHijo>
+              <DivHijo className="optionC">
                 <label>{arrayPreguntasHTML[respuesta].opcion3}</label>
-                <input type="radio" name="respuesta" value='answers3' />
+
+                <input type="radio" name="respuesta" className="c" id="radio2" value='answers3' onClick={optionC}/>
+						<label for="radio2"></label>
               </DivHijo>
             </div>
            
           </form>
 
-          <DivBoton>
-        <button id="boton">
+        
+        <Button onClick={next} id="boton">
         Comprobar
-        </button>
+        </Button>
+        
 
         <div id="mostrar"></div>
-          </DivBoton>
-
       </DivRespuestas>
     </SuperDiv>
   );

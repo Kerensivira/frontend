@@ -44,7 +44,7 @@ export const DivHijo = styled.div`
   transition: all 0.3s ease;
 `;
 
-export const DivBoton = styled.div`
+export const Button = styled.button`
  width: 100%;
  margin-top: 30px;
  background-color: #e9ffd58e;
@@ -57,5 +57,15 @@ export const DivBoton = styled.div`
  border: none;
  border-bottom: 2px solid #3e5e13cb;
  transition: all 0.3s ease;
+`;
+
+
+export const InputRadio = styled.input`
+cursor: pointer;
+width: 25px;
+height: 25px;
+background-color: #000;
+border: 2px solid #fff;
+border-radius: 50%;
 `;
 
