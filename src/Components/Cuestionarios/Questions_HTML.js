@@ -1,77 +1,90 @@
-// import React from 'react'
-// import { arrayPreguntasHTML } from '../../Data/dataQuestions'
-
-// export default class Questions_HTML extends Component {
-//     constructor() {
-//         super()
-//         this.state = {
-//             id: 0,
-//             question: titulo,
-//             answer:{
-//                 opciones:{
-//                 A_respuesta: '',
-//                 B_respuesta: '',
-//                 C_respuesta: '',
-//                 Correct: '',
-//                 Puntaje: 0,
-//                 } 
-//             },
-            
-//         }
-
-//     }
-
-//     componentDidMount() {
-//         this.getDataQuestions()
-//     }
-
-//     getDataQuestions = () => {
-//         const dataQuestions = arrayPreguntasHTML[this.state.id]
-
-//         this.setState({
-
-
-//             question: {
-//                 question: currentQuizData.question,
-//                 a: currentQuizData.a,
-//                 b: currentQuizData.b,
-//                 c: currentQuizData.c,
-//                 d: currentQuizData.d,
-//                 correct: currentQuizData.correct,
-//             }
-//         })
-//     }
+import React, { useState } from "react";
+import { arrayPreguntasHTML } from "../../Data/dataQuestions";
+import {
  
- 
-    
-    
-//console.log(arrayPreguntasHTML)
+    Button,
+  DivBoton,
+  DivHijo,
+  DivRespuestas,
+  QuestionTitle,
+  SuperDiv,
+} from "./CuestionarioStyles";
 
-// const getPregunta = (id) => {
-//     return arrayPreguntasHTML.find((arrayPreguntasHTML)=>
-//         arrayPreguntasHTML.id === id
-//     );
-// }
+const Questions_HTML = () => {
+  // encierro en constantes los hooks de estado para el funcionamiento de mi app.
 
-// console.log(getPregunta(2));
+  const [preguntaActual, setPreguntaActual] = useState(0);
+  const [respuesta, setRespuesta] = useState(0);
+  const [score, setScore] = useState(0);
 
-// //const pregunta3 = getPregunta(3)
+//configuracion para el boton
 
-// //console.log(pregunta3)
+const botonRes = document.getElementById('boton')
+const mostrar = document.getElementById('mostrar')
 
-// document.querySelector("div").innerHTML = JSON.stringify(arrayPreguntasHTML)
+const Comprobar = () => {
+const answers = DivRespuestas.querySelectorAll('respuestas');
+let respuestaCorrecta = 0;
 
 
-// const Questions_HTML = () => {
+}     
+   //estilos
 
-  
-//     return (
-        
-//        <>
-//        </>  
-         
-   
-//   )
-// }
+   //siguiente pregunta
 
-//export default Questions_HTML
+
+  //   function seleccionaRespuesta(Correcto, e){
+
+  //     //determinar si el jugador ha concluido la prueba, si no es el caso, enviarlo a la siguiente.
+
+  // if (preguntaActual === -1) {
+  //   setTerminado(true)
+  // }
+  // else {
+  //   setPreguntaActual (preguntaActual +1)
+  //}
+
+  //}
+
+  return (
+    <SuperDiv>
+
+      <QuestionTitle className="titulo">
+        <p>{arrayPreguntasHTML[preguntaActual].titulo}</p>
+      </QuestionTitle>
+
+      <DivRespuestas className="respuestas">
+          <form>
+            <div className="divPadre">
+              <DivHijo>
+                <label>{arrayPreguntasHTML[respuesta].opcion1}</label>
+                <input type="radio" name="respuesta" value='answers1' />
+              </DivHijo>
+
+              <DivHijo>
+                <label>{arrayPreguntasHTML[respuesta].opcion2}</label>
+                <input type="radio" name="respuesta" value='answers2' />
+              </DivHijo>
+
+              <DivHijo>
+                <label>{arrayPreguntasHTML[respuesta].opcion3}</label>
+                <input type="radio" name="respuesta" value='answers3' />
+              </DivHijo>
+            </div>
+           
+          </form>
+
+          <DivBoton>
+        <button id="boton">
+        Comprobar
+        </button>
+
+        <div id="mostrar"></div>
+          </DivBoton>
+
+      </DivRespuestas>
+    </SuperDiv>
+  );
+};
+
+export default Questions_HTML;
