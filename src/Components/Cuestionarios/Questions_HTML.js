@@ -8,6 +8,7 @@ import {
   Activation,
   ActivationFalse,
   Color,
+  ColorProgress,
   ContentOptions,
   Continue,
   ContinueFalse,
@@ -91,13 +92,24 @@ const Questions_HTML = () => {
 
   // FUNCION PARA VERIFICAR LA RESPUESTA
   function verification() {
+
+    const color = document.querySelectorAll('.color');
+
+        barra++;
+
+        console.log(color.length)
+
+        if(barra > color.length){
+            barra = color.length;
+        }
+
+        update();
     const A = document.querySelector(".A");
     const B = document.querySelector(".B");
     const C = document.querySelector(".C");
 
     if (A.classList.value === "sc-fEOsli dJTKer A correct") {
       alertaCorrect();
-      move(setScore(vidas + 10));
     } else if (B.classList.value === "sc-fEOsli dJTKer B correct") {
       disminuir();
       alertaIncorrecta();
@@ -118,31 +130,18 @@ const Questions_HTML = () => {
   // }
 
   // FUNCION DE PROGRESO
-  const [score, setScore] = useState(0)
-  function move() {
-    
-    const elem = document.querySelector(".color");
-    let width = 1;
-    const id = setInterval(frame, 10);
-    function frame() {
-      if (width >= 5) {
-        clearInterval(id);
-      } else {
-        width++;
-        elem.style.width = width + "%";
-      }
-    }
-  }
 
   // FUNCION PARA ACTIVAR ALERTA CORRECTA
 
   function alertaCorrect() {
+    update();
     const alertCorrect = document.querySelector(".alertCorrect");
     alertCorrect.classList.add("active");
   }
   
 
   function alertaIncorrecta() {
+    update();
     const alertIncorrect = document.querySelector(".alertIncorrect");
     alertIncorrect.classList.add("active");
   }
@@ -163,7 +162,24 @@ const Questions_HTML = () => {
   const [preguntaActual, setPreguntaActual] = useState(0);
   const [respuesta, setRespuesta] = useState(0);
 
+  let barra = 0;
+
+    function update() {
+        const color = document.querySelectorAll('.color');
+        color.forEach((color, idx) => {
+            if(idx < barra){
+                color.classList.add("active");
+            }else {
+                color.classList.remove("active");
+            }
+        });
+    }
+
   function handleNextQuestionSubmit() {
+
+    //Llamar "Desactivar opciones"
+    desactivarOpciones();
+
    //Cambiar informacion.
      setRespuesta (respuesta + 1)
      setPreguntaActual (preguntaActual + 1)
@@ -174,9 +190,6 @@ const Questions_HTML = () => {
 
      const alertIncorrect = document.querySelector(".alertIncorrect");
     alertIncorrect.classList.remove("active");
-
-    //Llamar "Desactivar opciones"
-    desactivarOpciones()
   }
 
   function desactivarOpciones (){
@@ -206,8 +219,11 @@ const Questions_HTML = () => {
 
             <Position1>
               <Progress>
-                <Color className="color"></Color>
-              </Progress>
+                <ColorProgress className='color'></ColorProgress>
+                <ColorProgress className='color'></ColorProgress>
+                <ColorProgress className='color'></ColorProgress>
+                <ColorProgress className='color'></ColorProgress>
+              </Progress> 
             </Position1>
 
             <Position2>
@@ -230,6 +246,7 @@ const Questions_HTML = () => {
 
           <ContentOptions>
             <Options>
+              
               {/* OPCION A */}
               <DivHijo onClick={optionA} className="A">
                 {arrayPreguntasHTML[respuesta].opciones.map((respuesta) => (
@@ -258,7 +275,6 @@ const Questions_HTML = () => {
                   value="answers2"
                 />
                 <Label
-                  key={respuesta.opcion3}
                   className="Borde"
                   htmlFor="radio1"
                 ></Label>
@@ -268,7 +284,7 @@ const Questions_HTML = () => {
 
               <DivHijo onClick={optionC} className="C">
                 {arrayPreguntasHTML[respuesta].opciones.map((respuesta) => (
-                  <label key={respuesta.opcion3} htmlFor="radio2">
+                  <label htmlFor="radio2">
                     {respuesta.opcion3}
                   </label>
                 ))}

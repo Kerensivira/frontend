@@ -186,3 +186,23 @@ input[type="radio"]:checked:disabled + label:before {
 	transform: translateX(5%);
     transition: all 0.3s ease;
 }
+
+.color:nth-child(1n) {
+    border-radius: 10px 0 0 10px;
+}
+
+.color:nth-child(2n) {
+    border-radius: 0;
+}
+
+.color:nth-child(3n) {
+    border-radius: 0;
+}
+
+.color:nth-child(4n) {
+    border-radius: 0 10px 10px 0;
+  }
+
+.color.active {
+    width: 63px;
+}

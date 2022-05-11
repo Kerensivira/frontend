@@ -16,6 +16,8 @@ const Home = () => {
             Practica tus conocimientos en la categoría que prefieras.
           </Title>
 
+                  {/* HTML */}
+
           <LenguajeHTML className='lenguage'>
                   <Link className='enlaces' to='/Questions_HTML'>
             <div className='items'>
@@ -32,7 +34,7 @@ const Home = () => {
              </Link>
           </LenguajeHTML>
 
-
+                    {/* CSS */}
           <LenguajeCSSandJS className='lenguageX2'>
           <Link className='enlaces' to='/Questions_CSS'>
               <div className='item1'>
@@ -49,7 +51,7 @@ const Home = () => {
                </Link>
 
               <div className='item2'>
-              <Link className='enlaces' to='/Questions_CSS'>
+              <Link className='enlaces' to='/'>
                 <Borde className='borde'>
                   <IconJs className='js'>
                     <FontAwesomeIcon icon={faJsSquare} />
