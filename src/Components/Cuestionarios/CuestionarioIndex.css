@@ -1,4 +1,12 @@
+/* ===== Google Font Import - Poppins ===== */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600&display=swap');
 
+*{
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+	font-family: 'Poppins', sans-serif;
+}
 /*** Styling Radio & Checkbox Input Fields (start here) ***/
 label {
     font-weight: 600;
@@ -49,7 +57,18 @@ input[type="radio"]:checked + label:after {
 	content: "";
 	width: 0;
 	height: 0;
-	border: 7px solid #0fbf12;
+	border: 7px solid #59ff5c;
+	float: left;
+	margin-left: -1.85em;
+	margin-top: 1em;
+	border-radius: 100%;
+}
+
+input[type="radio"]:checked + label:after {
+	content: "";
+	width: 0;
+	height: 0;
+	border: 7px solid #59ff5c;
 	float: left;
 	margin-left: -1.85em;
 	margin-top: 1em;
@@ -57,7 +76,6 @@ input[type="radio"]:checked + label:after {
 }
 
 input[type="radio"]:checked + label:before {
-	border-color: #0fbf12;
     background-color: #fff;
     transition: all 0.3s ease;
 }
@@ -72,21 +90,99 @@ input[type="radio"]:checked:disabled + label:before {
 }
 
 
-
-.optionA.disabled{
-    background-color: rgb(34, 43, 62);
-    border: 2px solid rgb(55, 67, 86);
-    color: rgb(52, 78, 97);;
+.x {
+    font-size: 20px;
+    color: #fff;
 }
 
-.optionB.disabled{
-    background-color: rgb(34, 43, 62);
-    border: 2px solid rgb(55, 67, 86);
-    color: rgb(52, 78, 97);;
+.img {
+	width: 50%;
 }
 
-.optionC.disabled{
-    background-color: rgb(34, 43, 62);
-    border: 2px solid rgb(55, 67, 86);
-    color: rgb(52, 78, 97);;
+.img img{
+	width: 150px;
+}
+
+.continue:hover {
+    border-bottom: 2px solid #3e5e13;
+    background-color: #a1e661;
+}
+
+.continueIncorrect:hover {
+	border-bottom: 2px solid #5e1313;
+    background-color: #e66161;
+}
+
+
+
+
+.A.correct {
+	border: 2px solid #7ae471;
+    background-color: #3d4a69;
+}
+
+.B.correct {
+	border: 2px solid #7ae471;
+    background-color: #3d4a69;
+}
+
+.C.correct {
+	border: 2px solid #7ae471;
+    background-color: #3d4a69;
+}
+
+
+
+.B.Incorrect {
+	border: 2px solid #e47171;
+    background-color: #693d3d;
+}
+
+.C.Incorrect {
+	border: 2px solid #e47171;
+    background-color: #693d3d;
+}
+
+.A.disabled {
+    background-color: #2a33496e;
+    border: 2px solid rgba(255, 255, 255, 0.205);
+    color: rgba(255, 255, 255, 0.205);
+    pointer-events: none;
+}
+
+.B.disabled {
+    background-color: #2a33496e;
+    border: 2px solid rgba(255, 255, 255, 0.205);
+    color: rgba(255, 255, 255, 0.205);
+    pointer-events: none;
+}
+
+.C.disabled {
+    background-color: #2a33496e;
+    border: 2px solid rgba(255, 255, 255, 0.205);
+    color: rgba(255, 255, 255, 0.205);
+    pointer-events: none;
+}
+
+.verification.veri:hover {
+    background-color: #7028d4;
+}
+
+.verification.veri {
+    border-bottom: 3px solid #00000056;
+    background-color: #6323bd;
+    cursor: pointer;
+}
+
+
+
+/* ALERTASSS */
+.alertCorrect.active {
+    transform: translateX(5%);
+    transition: all 0.3s ease;
+}
+
+.alertIncorrect.active {
+	transform: translateX(5%);
+    transition: all 0.3s ease;
 }

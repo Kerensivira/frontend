@@ -1,186 +1,310 @@
 import React, { useState } from "react";
 import { arrayPreguntasHTML } from "../../Data/dataQuestions";
+import { faHeart, faXmark } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { Link } from "react-router-dom";
 import "./CuestionarioIndex.css";
 import {
-  Button,
+  Activation,
+  ActivationFalse,
+  Color,
+  ContentOptions,
+  Continue,
+  ContinueFalse,
   DivHijo,
-  DivRespuestas,
-  InputRadio,
-  QuestionTitle,
-  SuperDiv,
+  Html,
+  HtmlHome,
+  Invisible,
+  Label,
+  Num,
+  Ok,
+  Options,
+  PaddingHtml,
+  Pantalla,
+  Position0,
+  Position1,
+  Position2,
+  Progress,
+  TextImg,
+  Title,
+  Veri,
 } from "./CuestionarioStyles";
 
 const Questions_HTML = () => {
-  // encierro en constantes los hooks de estado para el funcionamiento de mi app.
-
-  const [preguntaActual, setPreguntaActual] = useState(0);
-  const [respuesta, setRespuesta] = useState(0);
-  const [score, setScore] = useState(0);
-
-  //configuracion para el boton
-
-  const botonRes = document.getElementById("boton");
-  const mostrar = document.getElementById("mostrar");
-
-  const Comprobar = () => {
-    const answers = DivRespuestas.querySelectorAll("respuestas");
-    let respuestaCorrecta = 0;
-  };
-  //estilos
-
-  //siguiente pregunta
-
-  //   function seleccionaRespuesta(Correcto, e){
-
-  //     //determinar si el jugador ha concluido la prueba, si no es el caso, enviarlo a la siguiente.
-
-  // if (preguntaActual === -1) {
-  //   setTerminado(true)
-  // }
-  // else {
-  //   setPreguntaActual (preguntaActual +1)
-  //}
-
-  //}
 
   const optionA = () => {
-    const a = document.querySelector(".a");
+    const A = document.querySelector(".A");
+    const B = document.querySelector(".B");
+    const C = document.querySelector(".C");
 
-    const b = (document.querySelector(".b").disabled = true);
-    const c = (document.querySelector(".c").disabled = true);
+    // RESPUESTA CORRECTA, ACTIVA ESTILOS CORRECTOS
+    A.classList.add("correct");
 
-    const optionB = document.querySelector(".optionB");
-    const optionC = document.querySelector(".optionC");
+    // DESACTIVA LAS DEMÁS OPCIONES
+    B.classList.add("disabled");
+    C.classList.add("disabled");
 
-    a.classList.add("active", true);
-    optionB.classList.add("disabled");
-    optionC.classList.add("disabled");
+    // VERIFICACIÓN
+    const verification = document.querySelector(".verification");
+    verification.classList.add("veri");
+
+    console.log(A.classList.value);
   };
 
   const optionB = () => {
-    const b = document.querySelector(".b");
+    const A = document.querySelector(".A");
+    const B = document.querySelector(".B");
+    const C = document.querySelector(".C");
 
-    const a = (document.querySelector(".a").disabled = true);
-    const c = (document.querySelector(".c").disabled = true);
+    // RESPUESTA CORRECTA, ACTIVA ESTILOS CORRECTOS
+    B.classList.add("correct");
 
-    const optionA = document.querySelector(".optionA");
-    const optionC = document.querySelector(".optionC");
+    // DESACTIVA LAS DEMAS OPCIONES
+    A.classList.add("disabled");
+    C.classList.add("disabled");
 
-    b.classList.add("active", true);
-    optionA.classList.add("disabled");
-    optionC.classList.add("disabled");
+    // VERIFICATION
+    const verification = document.querySelector(".verification");
+    verification.classList.add("veri");
+
+    console.log(B.classList.value);
   };
 
   const optionC = () => {
-    const c = document.querySelector(".b");
+    const A = document.querySelector(".A");
+    const B = document.querySelector(".B");
+    const C = document.querySelector(".C");
 
-    const a = (document.querySelector(".a").disabled = true);
-    const b = (document.querySelector(".b").disabled = true);
+    // RESPUESTA CORRECTA, ACTIVA ESTILOS CORRECTOS
+    C.classList.add("correct");
 
-    const optionA = document.querySelector(".optionA");
-    const optionB = document.querySelector(".optionB");
+    // DESACTIVA LAS DEMAS OPCIONES
+    A.classList.add("disabled");
+    B.classList.add("disabled");
 
-    c.classList.add("active", true);
-    optionA.classList.add("disabled");
-    optionB.classList.add("disabled");
+    // VERIFICATION
+    const verification = document.querySelector(".verification");
+    verification.classList.add("veri");
+
+    console.log(C.classList.value);
   };
 
-  const next = () => {
-    const a = document.querySelector(".a");
+  // FUNCION PARA VERIFICAR LA RESPUESTA
+  function verification() {
+    const A = document.querySelector(".A");
+    const B = document.querySelector(".B");
+    const C = document.querySelector(".C");
 
-    if (a.classList.value === "a active true") {
-      console.log(true);
+    if (A.classList.value === "sc-fEOsli dJTKer A correct") {
+      alertaCorrect();
+      move(setScore(vidas + 10));
+    } else if (B.classList.value === "sc-fEOsli dJTKer B correct") {
+      disminuir();
+      alertaIncorrecta();
+
+      const Borde = document.querySelector(".Borde");
+      Borde.classList.add("IncorrectBorde");
+      B.classList.add("Incorrect");
+    } else if (C.classList.value === "sc-fEOsli dJTKer C correct") {
+      disminuir();
+      alertaIncorrecta();
     } else {
-      console.log(false);
+      return;
     }
-  };
+  }
+
+  // function continues (){
+  //   console.log('Continue')
+  // }
+
+  // FUNCION DE PROGRESO
+  const [score, setScore] = useState(0)
+  function move() {
+    
+    const elem = document.querySelector(".color");
+    let width = 1;
+    const id = setInterval(frame, 10);
+    function frame() {
+      if (width >= 5) {
+        clearInterval(id);
+      } else {
+        width++;
+        elem.style.width = width + "%";
+      }
+    }
+  }
+
+  // FUNCION PARA ACTIVAR ALERTA CORRECTA
+
+  function alertaCorrect() {
+    const alertCorrect = document.querySelector(".alertCorrect");
+    alertCorrect.classList.add("active");
+  }
+  
+
+  function alertaIncorrecta() {
+    const alertIncorrect = document.querySelector(".alertIncorrect");
+    alertIncorrect.classList.add("active");
+  }
+
+  // CONTADOR
+
+  const [vidas, setVidas] = useState (5); 
+  //se inicializa una variable en 0
+  function disminuir() {
+    // se crean la funcion y se agrega al evento onclick en en la etiqueta button con id disminuir
+  
+    document.getElementById("num").value = setVidas( vidas - 1) //se obtiene el valor del input, y se decrementa en 1 el valor que tenga.
+    //document.getElementById("num").innerHTML = num;
+  }
+
+  //Funcion para cambiar la pregunta.
+
+  const [preguntaActual, setPreguntaActual] = useState(0);
+  const [respuesta, setRespuesta] = useState(0);
+
+  function handleNextQuestionSubmit() {
+   //Cambiar informacion.
+     setRespuesta (respuesta + 1)
+     setPreguntaActual (preguntaActual + 1)
+
+     //remover los botones de alerta.
+     const alertCorrect = document.querySelector(".alertCorrect");
+     alertCorrect.classList.remove("active");
+
+     const alertIncorrect = document.querySelector(".alertIncorrect");
+    alertIncorrect.classList.remove("active");
+
+    //Llamar "Desactivar opciones"
+    desactivarOpciones()
+  }
+
+  function desactivarOpciones (){
+    const A = document.querySelector(".A");
+    const B = document.querySelector(".B");
+    const C = document.querySelector(".C");
+
+    A.classList.remove("disabled");
+    B.classList.remove("disabled");
+    C.classList.remove("disabled");
+  }
 
   return (
-    <SuperDiv>
-      <QuestionTitle className="titulo">
-        <p>{arrayPreguntasHTML[preguntaActual].titulo}</p>
-      </QuestionTitle>
+    <>
+      <Invisible>
+        <Pantalla></Pantalla>
+      </Invisible>
 
-      <DivRespuestas className="respuestas">
-        <form>
-          <div className="divPadre">
-            <DivHijo className="optionA">
-              <label>{arrayPreguntasHTML[respuesta].opcion1}</label>
+      <HtmlHome>
+        <PaddingHtml>
+          <Html>
+            <Position0>
+              <Link to="/home" className="x">
+                <FontAwesomeIcon icon={faXmark} />
+              </Link>
+            </Position0>
 
-              <input
-                type="radio"
-                name="respuesta"
-                className="a"
-                id="radio0"
-                value="answers1"
-                onClick={optionA}
-              />
-              <label for="radio0"></label>
-            </DivHijo>
+            <Position1>
+              <Progress>
+                <Color className="color"></Color>
+              </Progress>
+            </Position1>
 
-            <DivHijo className="optionB">
-              <label>{arrayPreguntasHTML[respuesta].opcion2}</label>
+            <Position2>
+              <FontAwesomeIcon icon={faHeart} />
+              <Num id="num">5</Num>
+            </Position2>
+          </Html>
 
-              <input
-                type="radio"
-                name="respuesta"
-                className="b"
-                id="radio1"
-                value="answers2"
-                onClick={optionB}
-              />
-              <label for="radio1"></label>
-            </DivHijo>
+          <TextImg>
+            <div className="img">
+              <img
+                src="https://res.cloudinary.com/dovavvnjx/image/upload/v1651901396/telefono-movil_qiqpcf.png"
+                alt="Img"
+              ></img>
+            </div>
+            <Title className="text_html" id="textOne">
+              {arrayPreguntasHTML[preguntaActual].titulo}
+            </Title>
+          </TextImg>
 
-            <DivHijo className="optionC">
-              <label>{arrayPreguntasHTML[respuesta].opcion3}</label>
+          <ContentOptions>
+            <Options>
+              {/* OPCION A */}
+              <DivHijo onClick={optionA} className="A">
+                {arrayPreguntasHTML[respuesta].opciones.map((respuesta) => (
+                  <label htmlFor="radio0"> {respuesta.opcion1} </label>
+                ))}
 
-              <input
-                type="radio"
-                name="respuesta"
-                className="c"
-                id="radio2"
-                value="answers3"
-                onClick={optionC}
-              />
-              <label for="radio2"></label>
-            </DivHijo>
-          </div>
-        </form>
+                <input
+                  type="radio"
+                  name="respuesta"
+                  id="radio0"
+                  value="answers1"
+                />
+                <label htmlFor="radio0"></label>
+              </DivHijo>
 
-        <Button onClick={next} id="boton">
-          Comprobar
-        </Button>
+              {/* OPCION B */}
 
-        <div id="mostrar"></div>
-      </DivRespuestas>
-    </SuperDiv>
+              <DivHijo onClick={optionB} className="B">
+                {arrayPreguntasHTML[respuesta].opciones.map((respuesta) => (
+                  <Label htmlFor="radio1">{respuesta.opcion2}</Label>
+                ))}
+                <input
+                  type="radio"
+                  name="respuesta"
+                  id="radio1"
+                  value="answers2"
+                />
+                <Label
+                  key={respuesta.opcion3}
+                  className="Borde"
+                  htmlFor="radio1"
+                ></Label>
+              </DivHijo>
+
+              {/* OPCION C */}
+
+              <DivHijo onClick={optionC} className="C">
+                {arrayPreguntasHTML[respuesta].opciones.map((respuesta) => (
+                  <label key={respuesta.opcion3} htmlFor="radio2">
+                    {respuesta.opcion3}
+                  </label>
+                ))}
+
+                <input
+                  type="radio"
+                  name="respuesta"
+                  id="radio2"
+                  value="answers3"
+                />
+                <label htmlFor="radio2"></label>
+              </DivHijo>
+            </Options>
+          </ContentOptions>
+
+          <Veri onClick={verification} className="verification">
+            COMPROBAR
+          </Veri>
+        </PaddingHtml>
+
+        <Activation className="alertCorrect">
+          <Ok>¡Buen Trabajo!</Ok>
+          <Continue onClick={handleNextQuestionSubmit} className="continue">
+            CONTINUAR
+          </Continue>
+        </Activation>
+
+        <ActivationFalse className="alertIncorrect">
+          <Ok>¡Sigue Intentando!</Ok>
+          <ContinueFalse onClick={handleNextQuestionSubmit} className="continueIncorrect">
+            CONTINUAR
+            </ContinueFalse>
+        </ActivationFalse>
+      </HtmlHome>
+    </>
   );
 };
 
 export default Questions_HTML;
-
-
-
-
-// FUNCIONESSS DIOS MIOOOOOOOOOO
-
-// function comprobacion () {
-//     const comprobacion = document.querySelector('.comprobacion');
-
-//     comprobacion.classList.add('active');
-// }
-
-// function move() {
-//     const elem = document.querySelector('.color');  
-//     let  width = 1;
-//     const id = setInterval(frame, 10);
-//     function frame() {
-//       if (width >= 5) {
-//         clearInterval(id);
-//       } else {
-//         width++; 
-//         elem.style.width = width + '%'; 
-//       }
-//     }
-// }
