@@ -187,22 +187,17 @@ input[type="radio"]:checked:disabled + label:before {
     transition: all 0.3s ease;
 }
 
-.color:nth-child(1n) {
-    border-radius: 10px 0 0 10px;
-}
-
-.color:nth-child(2n) {
-    border-radius: 0;
-}
-
-.color:nth-child(3n) {
-    border-radius: 0;
-}
-
-.color:nth-child(4n) {
-    border-radius: 0 10px 10px 0;
-  }
 
 .color.active {
-    width: 63px;
+    width: 100%;
+	border-radius: 10px;
+}
+
+.color {
+    width: 0;
+    min-height: 15px;
+    border-radius: 10px;
+    background-color: #7cc023;
+    transition: all 0.3s ease;
+    z-index: 1;
 }

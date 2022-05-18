@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { arrayPreguntasHTML } from "../../Data/dataQuestions";
+import { ArrayPreguntasJs } from "../../Data/dataQuestions";
 import { faHeart, faXmark } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { Link } from "react-router-dom";
@@ -29,7 +29,7 @@ import {
   Veri,
 } from "./CuestionarioStyles";
 
-const Questions_HTML = () => {
+const Questions_JS = () => {
 
   const optionA = () => {
     const A = document.querySelector(".A");
@@ -90,14 +90,13 @@ const Questions_HTML = () => {
 
   // FUNCION PARA VERIFICAR LA RESPUESTA
   function verification() {
-        
-
     const A = document.querySelector(".A");
     const B = document.querySelector(".B");
     const C = document.querySelector(".C");
 
     if (A.classList.value === "sc-fEOsli dJTKer A correct") {
       alertaCorrect();
+      move(setScore(vidas + 10));
     } else if (B.classList.value === "sc-fEOsli dJTKer B correct") {
       disminuir();
       alertaIncorrecta();
@@ -118,21 +117,27 @@ const Questions_HTML = () => {
   // }
 
   // FUNCION DE PROGRESO
+  const [score, setScore] = useState(0)
+  function move() {
+    
+    const elem = document.querySelector(".color");
+    let width = 1;
+    const id = setInterval(frame, 10);
+    function frame() {
+      if (width >= 5) {
+        clearInterval(id);
+      } else {
+        width++;
+        elem.style.width = width + "%";
+      }
+    }
+  }
 
   // FUNCION PARA ACTIVAR ALERTA CORRECTA
 
   function alertaCorrect() {
-    const color = document.querySelectorAll('.color');
-    barra++;
-    if(barra > color.length){
-      barra = color.length;
-  }
-  
-    update()
-
     const alertCorrect = document.querySelector(".alertCorrect");
     alertCorrect.classList.add("active");
-    
   }
   
 
@@ -157,29 +162,7 @@ const Questions_HTML = () => {
   const [preguntaActual, setPreguntaActual] = useState(0);
   const [respuesta, setRespuesta] = useState(0);
 
-  let barra = 1;
-
-    function update() {
-        const color = document.querySelectorAll('.color');
-        color.forEach((color, idx) => {
-            if(idx < barra){
-                color.classList.add("active");
-            }else {
-                color.classList.remove("active");
-            }
-        });
-    }
-
-function comprobar (){
-  
-    alertaCorrect()
-}
-
   function handleNextQuestionSubmit() {
-
-    //Llamar "Desactivar opciones"
-    desactivarOpciones();
-   
    //Cambiar informacion.
      setRespuesta (respuesta + 1)
      setPreguntaActual (preguntaActual + 1)
@@ -191,8 +174,8 @@ function comprobar (){
      const alertIncorrect = document.querySelector(".alertIncorrect");
     alertIncorrect.classList.remove("active");
 
-    //Barra de Score.
-    
+    //Llamar "Desactivar opciones"
+    desactivarOpciones()
   }
 
   function desactivarOpciones (){
@@ -222,8 +205,11 @@ function comprobar (){
 
             <Position1>
               <Progress>
+              <div className='color'></div>
                 <div className='color'></div>
-              </Progress> 
+                <div className='color'></div>
+                <div className='color'></div>
+              </Progress>
             </Position1>
 
             <Position2>
@@ -240,16 +226,15 @@ function comprobar (){
               ></img>
             </div>
             <Title className="text_html" id="textOne">
-              {arrayPreguntasHTML[preguntaActual].titulo}
+              {ArrayPreguntasJs[preguntaActual].titulo}
             </Title>
           </TextImg>
 
           <ContentOptions>
             <Options>
-              
               {/* OPCION A */}
               <DivHijo onClick={optionA} className="A">
-                {arrayPreguntasHTML[respuesta].opciones.map((respuesta) => (
+                {ArrayPreguntasJs[respuesta].opciones.map((respuesta) => (
                   <label htmlFor="radio0"> {respuesta.opcion1} </label>
                 ))}
 
@@ -265,7 +250,7 @@ function comprobar (){
               {/* OPCION B */}
 
               <DivHijo onClick={optionB} className="B">
-                {arrayPreguntasHTML[respuesta].opciones.map((respuesta) => (
+                {ArrayPreguntasJs[respuesta].opciones.map((respuesta) => (
                   <Label htmlFor="radio1">{respuesta.opcion2}</Label>
                 ))}
                 <input
@@ -275,6 +260,7 @@ function comprobar (){
                   value="answers2"
                 />
                 <Label
+                  key={respuesta.opcion3}
                   className="Borde"
                   htmlFor="radio1"
                 ></Label>
@@ -283,8 +269,8 @@ function comprobar (){
               {/* OPCION C */}
 
               <DivHijo onClick={optionC} className="C">
-                {arrayPreguntasHTML[respuesta].opciones.map((respuesta) => (
-                  <label htmlFor="radio2">
+                {ArrayPreguntasJs[respuesta].opciones.map((respuesta) => (
+                  <label key={respuesta.opcion3} htmlFor="radio2">
                     {respuesta.opcion3}
                   </label>
                 ))}
@@ -323,4 +309,4 @@ function comprobar (){
   );
 };
 
-export default Questions_HTML;
+export default Questions_JS;

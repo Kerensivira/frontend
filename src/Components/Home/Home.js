@@ -50,8 +50,9 @@ const Home = () => {
               </div>
                </Link>
 
+              {/* JavaScript */}
               <div className='item2'>
-              <Link className='enlaces' to='/'>
+              <Link className='enlaces' to='/Questions_JS'>
                 <Borde className='borde'>
                   <IconJs className='js'>
                     <FontAwesomeIcon icon={faJsSquare} />
@@ -64,8 +65,9 @@ const Home = () => {
               </div>
           </LenguajeCSSandJS>
 
+            {/* FIGMA */}
           <LenguajeFigmaAndUx className='lenguageX3'>
-          <Link className='enlaces' to='/Questions_CSS'>
+          <Link className='enlaces' to='/Questions_Figma'>
           <div className='item1'>
                 <Borde className='borde'>
                   <IconFigma className='css'>
@@ -79,8 +81,9 @@ const Home = () => {
               </div>
                </Link>
 
+                {/* UX */}
               <div className='item2'>
-              <Link className='enlaces' to='/Questions_CSS'>
+              <Link className='enlaces' to='/Questions_UX'>
                 <Borde className='borde'>
                   <IconUx className='js'>
                     UX
@@ -102,8 +105,13 @@ const Home = () => {
             </IconHome>
 
             <IconEstadistica className='iconHome'>
+              
               <FontAwesomeIcon icon={faBolt} />
-              <div className='iconName'>Estadística</div>
+              <div className='iconName'>
+                <Link className='enlaces' to='/estadistica'>
+                   Estadística
+                </Link>
+             </div>
             </IconEstadistica>
 
             <IconPerfil className='iconPerfil'>
